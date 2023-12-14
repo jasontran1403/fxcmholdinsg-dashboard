@@ -1,0 +1,8 @@
+# Folders
+assets/
+src/pages/dashboard/dashboard.css
+src/pages/login/login.css
+src/pages/register/register.css
+
+# Files
+README.md

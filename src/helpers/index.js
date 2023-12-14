@@ -1,0 +1,110 @@
+import config from "../config";
+
+export function getOffset(el) {
+    const rect = el.getBoundingClientRect();
+    return {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
+    };
+}
+
+export const toast = (type, message) => {
+    (function () {
+        const Toast = window.Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+        });
+        Toast.fire({
+            icon: type,
+            title: message
+        }).then(() => {
+            if (
+                message === "Swap successful" ||
+                message === "Transfer successful" ||
+                message === "Deposit successful" ||
+                message === "Withdraw successful" ||
+                message === "Buy package successful" ||
+                message === "Withdraw capital successful" ||
+                message === "Cài đặt mã bảo mật 2FA thành công" ||
+                message === "Huỷ cài đặt mã bảo mật 2FA thành công" ||
+                message === "Change password success" ||
+                message === "Get point successful" ||
+                message === "Huỷ lệnh nạp thành công!" ||
+                message === "Huỷ lệnh rút thành công!" ||
+                message === "Tạo lệnh rút thành công!" ||
+                message === "Cập nhật thông tin thành công!" ||
+                message === "Thay đổi mật khẩu thành công" ||
+                message === "Mua gói thành công" ||
+                message === "Upload ảnh KYC thành công!"
+            ) {
+                setTimeout(() => {
+                    window.location.reload();
+                }, 0);
+            }
+        });
+    })();
+};
+
+export const confirmAlert = executeFunction => {
+    window.Swal.fire({
+        title: "Are you sure?",
+        text: "You wont be able to revert this transaction!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then(result => {
+        if (result.isConfirmed) {
+            executeFunction();
+            window.Swal.fire("Confirmed!", "Your transaction has been created.", "success");
+        }
+    });
+};
+
+export const checkPermissions = (permissions = []) => {
+    let found = false;
+    const userPermissions = ["add", "update", "delete"];
+    if (userPermissions) {
+        permissions.forEach(item => {
+            found = found || userPermissions.includes(item);
+        });
+    }
+    return found;
+};
+
+export const scrollTop = () => {
+    const element = document.getElementById("top-page");
+    if (element) {
+        const position = getOffset(element);
+        window.scrollTo(position.left, 0);
+    }
+};
+
+export const formatToCurrency = value => {
+    return new Intl.NumberFormat("de-DE", { style: "currency", currency: "USD" }).format(
+        parseFloat(value)
+    );
+};
+
+export const formatToCurrencyVND = value => {
+    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(
+        parseFloat(value)
+    );
+};
+
+export const checkUser = () => {
+    return !!config.AUTH.DRIVER.getItem("user");
+};
+
+export const logout = navigate => {
+    config.AUTH.DRIVER.removeItem("user");
+    config.AUTH.DRIVER.removeItem("access_token");
+    config.AUTH.DRIVER.removeItem("refresh_token");
+    config.AUTH.DRIVER.removeItem("username");
+    navigate("/", { replace: true });
+    toast("success", "Logout successfully");
+};
