@@ -1,4 +1,5 @@
 import Axios from "axios";
+import copy from "clipboard-copy";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,8 @@ import env from "../../helpers/env";
 
 const Kyc = () => {
     const navigate = useNavigate();
-    const username = config.AUTH.DRIVER.getItem("username");
+    const [username] = useState(config.AUTH.DRIVER.getItem("username"));
+    const [refUrl, setRefUrl] = useState("");
     const [file1, setFile1] = useState(null);
     const [file2, setFile2] = useState(null);
     const [file3, setFile3] = useState(null);
@@ -80,6 +82,33 @@ const Kyc = () => {
             const imageUrl = URL.createObjectURL(selectedFile);
             setImage4Url(imageUrl);
         }
+    };
+
+    useEffect(() => {
+        let config = {
+            method: "get",
+            url: `${env}/api/user/getRef/${username}`
+        };
+
+        Axios.request(config)
+            .then(response => {
+                setRefUrl(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
+
+    const handleCopy = () => {
+        const url = `https://dashboard.fxcmholdings.com/register/${refUrl}`;
+        // Sử dụng clipboard-copy để đưa nội dung vào clipboard
+        copy(url)
+            .then(() => {
+                alert("Đã sao chép thành công vào clipboard");
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     const handleSubmit = () => {
@@ -168,6 +197,13 @@ const Kyc = () => {
                         <span className="material-icons-sharp">add</span>
                         <h3>2FA</h3>
                     </a>
+                    <p
+                        onClick={handleCopy}
+                        style={{ textAlign: "center", marginTop: "20px", cursor: "pointer" }}
+                    >
+                        <span className="material-icons-sharp">swipe_left</span>
+                        <h3>Reflinl</h3>
+                    </p>
                     <a onClick={handleClick}>
                         <span className="material-icons-sharp">logout</span>
                         <h3>Logout</h3>

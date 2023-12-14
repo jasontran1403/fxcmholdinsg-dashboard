@@ -1,4 +1,5 @@
 import Axios from "axios";
+import copy from "clipboard-copy";
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -18,9 +19,39 @@ const Deposit = () => {
     const currentUsername = config.AUTH.DRIVER.getItem("username");
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [username] = useState(config.AUTH.DRIVER.getItem("username"));
+    const [refUrl, setRefUrl] = useState("");
+
     const handleClick = e => {
         e.preventDefault();
         logout(navigate);
+    };
+
+    useEffect(() => {
+        let config = {
+            method: "get",
+            url: `${env}/api/user/getRef/${username}`
+        };
+
+        Axios.request(config)
+            .then(response => {
+                setRefUrl(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
+
+    const handleCopy = () => {
+        const url = `https://dashboard.fxcmholdings.com/register/${refUrl}`;
+        // Sử dụng clipboard-copy để đưa nội dung vào clipboard
+        copy(url)
+            .then(() => {
+                alert("Đã sao chép thành công vào clipboard");
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     console.log(loading);
@@ -184,6 +215,13 @@ const Deposit = () => {
                         <span className="material-icons-sharp">add</span>
                         <h3>2FA</h3>
                     </a>
+                    <p
+                        onClick={handleCopy}
+                        style={{ textAlign: "center", marginTop: "20px", cursor: "pointer" }}
+                    >
+                        <span className="material-icons-sharp">swipe_left</span>
+                        <h3>Reflinl</h3>
+                    </p>
                     <a onClick={handleClick}>
                         <span className="material-icons-sharp">logout</span>
                         <h3>Logout</h3>

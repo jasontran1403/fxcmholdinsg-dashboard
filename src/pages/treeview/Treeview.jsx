@@ -1,20 +1,49 @@
-// import Axios from "axios";
-// import React, { useEffect, useState } from "react";
-import React from "react";
+import Axios from "axios";
+import copy from "clipboard-copy";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import config from "../../config";
+import config from "../../config";
 // import { formatToCurrency } from "../../helpers";
 import { logout } from "../../helpers";
-// import env from "../../helpers/env";
+import env from "../../helpers/env";
 // import ".//dashboard.css";
 
 const Treeview = () => {
     const navigate = useNavigate();
+    const [username] = useState(config.AUTH.DRIVER.getItem("username"));
+    const [refUrl, setRefUrl] = useState("");
 
     const handleClick = e => {
         e.preventDefault();
         logout(navigate);
+    };
+
+    useEffect(() => {
+        let config = {
+            method: "get",
+            url: `${env}/api/user/getRef/${username}`
+        };
+
+        Axios.request(config)
+            .then(response => {
+                setRefUrl(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
+
+    const handleCopy = () => {
+        const url = `https://dashboard.fxcmholdings.com/register/${refUrl}`;
+        // Sử dụng clipboard-copy để đưa nội dung vào clipboard
+        copy(url)
+            .then(() => {
+                alert("Đã sao chép thành công vào clipboard");
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     return (
@@ -70,6 +99,13 @@ const Treeview = () => {
                         <span className="material-icons-sharp">add</span>
                         <h3>2FA</h3>
                     </a>
+                    <p
+                        onClick={handleCopy}
+                        style={{ textAlign: "center", marginTop: "20px", cursor: "pointer" }}
+                    >
+                        <span className="material-icons-sharp">swipe_left</span>
+                        <h3>Reflinl</h3>
+                    </p>
                     <a onClick={handleClick}>
                         <span className="material-icons-sharp">logout</span>
                         <h3>Logout</h3>

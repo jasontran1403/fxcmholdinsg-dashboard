@@ -44,6 +44,14 @@ const App = () => {
                     }
                 />
                 <Route
+                    path="/register/:uuid"
+                    element={
+                        <Guest>
+                            <Register />
+                        </Guest>
+                    }
+                />
+                <Route
                     path="/investment"
                     element={
                         <Auth>

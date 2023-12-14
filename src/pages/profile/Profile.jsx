@@ -1,4 +1,5 @@
 import Axios from "axios";
+import copy from "clipboard-copy";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +11,7 @@ import env from "../../helpers/env";
 const Profile = () => {
     const navigate = useNavigate();
     const [username] = useState(config.AUTH.DRIVER.getItem("username"));
+    const [refUrl, setRefUrl] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [identity, setIdentity] = useState("");
@@ -19,6 +21,33 @@ const Profile = () => {
     const handleClick = e => {
         e.preventDefault();
         logout(navigate);
+    };
+
+    useEffect(() => {
+        let config = {
+            method: "get",
+            url: `${env}/api/user/getRef/${username}`
+        };
+
+        Axios.request(config)
+            .then(response => {
+                setRefUrl(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    });
+
+    const handleCopy = () => {
+        const url = `https://dashboard.fxcmholdings.com/register/${refUrl}`;
+        // Sử dụng clipboard-copy để đưa nội dung vào clipboard
+        copy(url)
+            .then(() => {
+                alert("Đã sao chép thành công vào clipboard");
+            })
+            .catch(error => {
+                console.log(error);
+            });
     };
 
     useEffect(() => {
@@ -127,6 +156,13 @@ const Profile = () => {
                         <span className="material-icons-sharp">add</span>
                         <h3>2FA</h3>
                     </a>
+                    <p
+                        onClick={handleCopy}
+                        style={{ textAlign: "center", marginTop: "20px", cursor: "pointer" }}
+                    >
+                        <span className="material-icons-sharp">swipe_left</span>
+                        <h3>Reflinl</h3>
+                    </p>
                     <a onClick={handleClick}>
                         <span className="material-icons-sharp">logout</span>
                         <h3>Logout</h3>
