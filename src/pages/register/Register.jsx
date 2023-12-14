@@ -1,6 +1,6 @@
 import Axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { PrimaryButton } from "../../components/buttons";
 import { Input } from "../../components/field";
@@ -10,7 +10,36 @@ import ".//register.css";
 
 const Register = () => {
     const navigate = useNavigate();
+    const [error, setError] = useState(false);
     const [alreadyRegis] = useState(false);
+    const { uuid } = useParams();
+    const [ref, setRef] = useState("");
+
+    var configPlacement = useMemo(
+        () =>
+            (configPlacement = {
+                method: "get",
+                url: `http://localhost:8080/api/user/reflink/${uuid}`
+            }),
+        [uuid]
+    );
+
+    useEffect(() => {
+        Axios(configPlacement)
+            .then(response => {
+                if (response.data === "Not existed") {
+                    toast("error", "Reflink này không tồn tại!");
+                    setError(true);
+                } else {
+                    setRef(response.data);
+                    setError(false);
+                }
+            })
+            .catch(() => {
+                toast("error", "Reflink này không tồn tại!");
+                setError(true);
+            });
+    }, [configPlacement, navigate]);
 
     const defaultMessage = {
         username: [],
@@ -23,17 +52,16 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [refferal, setRefferal] = useState("");
 
     let regEmail =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     let dataforRegis = JSON.stringify({
         name: "",
-        username: username,
+        username: username.toLocaleLowerCase(),
         password: password,
-        email: email,
-        rootUsername: refferal,
+        email: email.toLocaleLowerCase(),
+        rootUsername: ref.toLocaleLowerCase(),
         address: "",
         phoneNumber: ""
     });
@@ -51,7 +79,7 @@ const Register = () => {
         setLoading(true);
         setTimeout(() => {
             const newErrorMessage = defaultMessage;
-            if (email === "" || password === "" || username === "" || refferal === "") {
+            if (email === "" || password === "" || username === "" || ref === "") {
                 toast("error", "Vui lòng nhập đủ thông tin!");
                 return;
             } else if (!regEmail.test(email)) {
@@ -63,7 +91,7 @@ const Register = () => {
                 toast("error", "This placement already registered");
             }
 
-            if (email && username && password && refferal && alreadyRegis == false) {
+            if (email && username && password && ref && alreadyRegis == false) {
                 Axios(configRegis)
                     .then(response => {
                         let message = response.data;
@@ -75,7 +103,7 @@ const Register = () => {
                             newErrorMessage.email = ["Địa chỉ email đã tồn tại"];
                         } else if (message.includes("sponsor")) {
                             toast("error", "Username người giới thiệu không tồn tại");
-                            newErrorMessage.refferal = ["Username người giới thiệu không tồn tại"];
+                            newErrorMessage.ref = ["Username người giới thiệu không tồn tại"];
                         } else {
                             toast("success", "Đăng ký tài khoản thành công!");
                             navigate("/login");
@@ -128,16 +156,26 @@ const Register = () => {
                                 id="refferal"
                                 type="text"
                                 placeholder="Enter refferal"
-                                value={refferal}
-                                onChange={e => setRefferal(e.target.value)}
+                                value={ref}
+                                disabled={true}
                             />
                         </div>
                         <p>
                             Đã có tài khoản? <a href="/login">Đăng nhập tại đây </a>
                         </p>
-                        <PrimaryButton onClick={register} disabled={loading}>
-                            <span>Sign up</span>
-                        </PrimaryButton>
+                        {error ? (
+                            <PrimaryButton
+                                onClick={register}
+                                disabled={error || loading}
+                                style={{ cursor: "not-allowed", backgroundColor: "grey" }}
+                            >
+                                <span>Sign up</span>
+                            </PrimaryButton>
+                        ) : (
+                            <PrimaryButton onClick={register}>
+                                <span>Sign up</span>
+                            </PrimaryButton>
+                        )}
                     </form>
                 </div>
             </div>
