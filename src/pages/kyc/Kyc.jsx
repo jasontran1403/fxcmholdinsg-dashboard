@@ -202,7 +202,7 @@ const Kyc = () => {
                         style={{ textAlign: "center", marginTop: "20px", cursor: "pointer" }}
                     >
                         <span className="material-icons-sharp">swipe_left</span>
-                        <h3>Reflinl</h3>
+                        <h3>Reflink</h3>
                     </p>
                     <a onClick={handleClick}>
                         <span className="material-icons-sharp">logout</span>
