@@ -7,7 +7,6 @@ import config from "../../config";
 import { formatToCurrency, toast } from "../../helpers";
 import { logout } from "../../helpers";
 import env from "../../helpers/env";
-// import ".//dashboard.css";
 
 const Investment = () => {
     const navigate = useNavigate();
