@@ -30,10 +30,10 @@ const Register = () => {
 
     let dataforRegis = JSON.stringify({
         name: "",
-        username: username,
+        username: username.toLocaleLowerCase(),
         password: password,
-        email: email,
-        rootUsername: refferal,
+        email: email.toLocaleLowerCase(),
+        rootUsername: refferal.toLocaleLowerCase(),
         address: "",
         phoneNumber: ""
     });
