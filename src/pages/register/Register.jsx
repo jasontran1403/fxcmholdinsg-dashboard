@@ -20,7 +20,6 @@ const Register = () => {
     };
 
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(defaultMessage);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -52,20 +51,12 @@ const Register = () => {
         setLoading(true);
         setTimeout(() => {
             const newErrorMessage = defaultMessage;
-            if (email === "") {
-                newErrorMessage.email = ["Vui lòng nhập địa chỉ email"];
-            }
-            if (password === "") {
-                newErrorMessage.password = ["Vui lòng nhập mật khẩu"];
-            }
-            if (username === "") {
-                newErrorMessage.username = ["Vui lòng nhập tên đăng nhập"];
-            }
-            if (refferal === "") {
-                newErrorMessage.refferal = ["Vui lòng nhập username người giới thiệu"];
-            }
-            if (!regEmail.test(email)) {
-                newErrorMessage.email = ["Email không đúng định dạng"];
+            if (email === "" || password === "" || username === "" || refferal === "") {
+                toast("error", "Vui lòng nhập đủ thông tin!");
+                return;
+            } else if (!regEmail.test(email)) {
+                toast("error", "Email không đúng định dạng!");
+                return;
             }
 
             if (alreadyRegis) {
@@ -94,7 +85,6 @@ const Register = () => {
                         console.log(error);
                     });
             } else {
-                setErrorMessage(defaultMessage);
                 setLoading(false);
             }
         }, 500);
@@ -113,7 +103,6 @@ const Register = () => {
                                 placeholder="Enter username"
                                 value={username}
                                 onChange={e => setUsername(e.target.value)}
-                                error={errorMessage.username}
                             />
                         </div>
                         <div style={{ width: "100%" }}>
@@ -123,7 +112,6 @@ const Register = () => {
                                 placeholder="Enter password"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
-                                error={errorMessage.password}
                             />
                         </div>
                         <div style={{ width: "100%" }}>
@@ -133,7 +121,6 @@ const Register = () => {
                                 placeholder="Enter email"
                                 value={email}
                                 onChange={e => setEmail(e.target.value)}
-                                error={errorMessage.email}
                             />
                         </div>
                         <div style={{ width: "100%" }}>
@@ -143,7 +130,6 @@ const Register = () => {
                                 placeholder="Enter refferal"
                                 value={refferal}
                                 onChange={e => setRefferal(e.target.value)}
-                                error={errorMessage.refferal}
                             />
                         </div>
                         <p>
