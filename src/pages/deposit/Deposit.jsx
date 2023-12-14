@@ -21,6 +21,11 @@ const Deposit = () => {
     const [loading, setLoading] = useState(false);
     const [username] = useState(config.AUTH.DRIVER.getItem("username"));
     const [refUrl, setRefUrl] = useState("");
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -230,6 +235,13 @@ const Deposit = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>Nạp tiền</h1>
                 <div className="buy-package">
                     <div className="col-span-1 md:col-span-3 lg:col-span-2 px-4 py-3 text-center">

@@ -7,12 +7,18 @@ import config from "../../config";
 // import { formatToCurrency } from "../../helpers";
 import { logout } from "../../helpers";
 import env from "../../helpers/env";
-// import ".//dashboard.css";
+import ".//treeview.css";
 
 const Treeview = () => {
     const navigate = useNavigate();
     const [username] = useState(config.AUTH.DRIVER.getItem("username"));
     const [refUrl, setRefUrl] = useState("");
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        console.log(mobile);
+        setMobile(!mobile);
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -114,6 +120,13 @@ const Treeview = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>Treeview</h1>
                 <div className="analyse">
                     <div className="sales">

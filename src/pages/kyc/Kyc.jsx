@@ -20,6 +20,11 @@ const Kyc = () => {
     const [image2Url, setImage2Url] = useState(null);
     const [image3Url, setImage3Url] = useState(null);
     const [image4Url, setImage4Url] = useState(null);
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -212,6 +217,13 @@ const Kyc = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>KYC tài khoản</h1>
                 <div
                     className="analyse"

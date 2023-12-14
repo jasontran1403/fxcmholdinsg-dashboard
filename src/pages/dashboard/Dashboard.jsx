@@ -23,6 +23,11 @@ const Dashboard = () => {
     const [expenses, setExpenses] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     console.log(loading);
 
@@ -232,6 +237,13 @@ const Dashboard = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>Dashboard</h1>
                 <div className="analyse">
                     <div className="sales">

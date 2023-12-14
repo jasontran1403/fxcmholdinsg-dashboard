@@ -23,6 +23,11 @@ const Investment = () => {
     const [info, setInfo] = useState({});
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     console.log(loading);
 
@@ -231,6 +236,13 @@ const Investment = () => {
                 </aside>
 
                 <main>
+                    <div className="right-section" onClick={handleClickNav}>
+                        <div className="nav">
+                            <button id="menu-btn">
+                                <span className="material-icons-sharp">menu</span>
+                            </button>
+                        </div>
+                    </div>
                     <h1>Investment</h1>
                     <div className="buy-package">
                         <div className="col-span-1 md:col-span-3 lg:col-span-2 px-4 py-3 text-center">

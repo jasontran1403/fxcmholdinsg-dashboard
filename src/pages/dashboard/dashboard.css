@@ -226,6 +226,14 @@ main{
     margin-top: 1.4rem;
 }
 
+.mobile {
+    display: block;
+}
+
+.desktop {
+    display: none;
+}
+
 main .analyse{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

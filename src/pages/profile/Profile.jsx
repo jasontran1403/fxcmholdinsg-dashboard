@@ -17,6 +17,11 @@ const Profile = () => {
     const [identity, setIdentity] = useState("");
     const [address, setAddress] = useState("");
     const [fullname, setFullname] = useState("");
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -171,6 +176,13 @@ const Profile = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>Profile</h1>
                 <div className="buy-package">
                     <div className="col-span-1 md:col-span-3 lg:col-span-2 px-4 py-3 text-center">

@@ -19,6 +19,11 @@ const FaCode = () => {
     const [qrImg, setQrImg] = useState("");
     const [authenCode, setAuthenCode] = useState("");
     const [isEnabled, setIsEnabled] = useState(false);
+    const [mobile, setMobile] = useState(false);
+
+    const handleClickNav = () => {
+        setMobile(!mobile);
+    };
 
     const handleClick = e => {
         e.preventDefault();
@@ -209,6 +214,13 @@ const FaCode = () => {
             </aside>
 
             <main>
+                <div className="right-section" onClick={handleClickNav}>
+                    <div className="nav">
+                        <button id="menu-btn">
+                            <span className="material-icons-sharp">menu</span>
+                        </button>
+                    </div>
+                </div>
                 <h1>Mã bảo mật 2FA</h1>
                 <div className="buy-package" style={{ textAlign: "center" }}>
                     <div className="fa">
