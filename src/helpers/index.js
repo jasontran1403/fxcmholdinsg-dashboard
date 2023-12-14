@@ -38,7 +38,8 @@ export const toast = (type, message) => {
                 message === "Cập nhật thông tin thành công!" ||
                 message === "Thay đổi mật khẩu thành công" ||
                 message === "Mua gói thành công" ||
-                message === "Upload ảnh KYC thành công!"
+                message === "Upload ảnh KYC thành công!" ||
+                message === "Đăng xuất thành công!"
             ) {
                 setTimeout(() => {
                     window.location.reload();
@@ -106,5 +107,5 @@ export const logout = navigate => {
     config.AUTH.DRIVER.removeItem("refresh_token");
     config.AUTH.DRIVER.removeItem("username");
     navigate("/", { replace: true });
-    toast("success", "Logout successfully");
+    toast("success", "Đăng xuất thành công!");
 };

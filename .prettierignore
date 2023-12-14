@@ -3,6 +3,15 @@ assets/
 src/pages/dashboard/dashboard.css
 src/pages/login/login.css
 src/pages/register/register.css
+src/pages/changepassword/investment.css
+src/pages/deposit/investment.css
+src/pages/facode/investment.css
+src/pages/ibhistory/investment.css
+src/pages/investment/investment.css
+src/pages/kyc/investment.css
+src/pages/profile/investment.css
+src/pages/treeview/investment.css
+src/pages/withdraw/investment.css
 
 # Files
 README.md
