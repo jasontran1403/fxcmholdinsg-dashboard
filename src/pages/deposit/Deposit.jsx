@@ -8,7 +8,7 @@ import config from "../../config";
 import { formatToCurrency, toast } from "../../helpers";
 import { logout } from "../../helpers";
 import env from "../../helpers/env";
-// import ".//dashboard.css";
+import ".//investment.css";
 
 const Deposit = () => {
     const navigate = useNavigate();
@@ -18,7 +18,6 @@ const Deposit = () => {
     const [network, setNetwork] = useState("");
     const currentUsername = config.AUTH.DRIVER.getItem("username");
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [username] = useState(config.AUTH.DRIVER.getItem("username"));
     const [refUrl, setRefUrl] = useState("");
     const [mobile, setMobile] = useState(false);
@@ -59,8 +58,6 @@ const Deposit = () => {
             });
     };
 
-    console.log(loading);
-
     const handleCancel = transactionId => {
         let config = {
             method: "get",
@@ -70,14 +67,12 @@ const Deposit = () => {
             }
         };
 
-        Axios.request(config).then(response => {
-            console.log(response);
+        Axios.request(config).then(() => {
             toast("success", "Huỷ lệnh nạp thành công!");
         });
     };
 
     useEffect(() => {
-        setLoading(true);
         setTimeout(() => {
             let configCommissionHistory = {
                 method: "get",
@@ -98,8 +93,6 @@ const Deposit = () => {
             };
 
             fetchData();
-
-            setLoading(false);
         }, 500);
     }, [currentUsername]);
 
@@ -169,7 +162,7 @@ const Deposit = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>
@@ -296,7 +289,7 @@ const Deposit = () => {
                                         onChange={e => {
                                             setAmount(e.target.value);
                                         }}
-                                        style={{ width: "500px" }}
+                                        style={{ width: "100%" }}
                                         placeholder="Số tiền nạp"
                                     />
                                 </div>

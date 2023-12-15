@@ -16,7 +16,6 @@ const Treeview = () => {
     const [mobile, setMobile] = useState(false);
 
     const handleClickNav = () => {
-        console.log(mobile);
         setMobile(!mobile);
     };
 
@@ -54,7 +53,7 @@ const Treeview = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>

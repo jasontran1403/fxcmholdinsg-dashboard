@@ -105,7 +105,7 @@ const Profile = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>
@@ -201,7 +201,7 @@ const Profile = () => {
                                         setCurrentPassword(e.target.value);
                                     }}
                                     placeholder="Mật khẩu cũ"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -224,7 +224,7 @@ const Profile = () => {
                                         setNewPassword(e.target.value);
                                     }}
                                     placeholder="Mật khẩu mới"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -247,7 +247,7 @@ const Profile = () => {
                                         setConfirmPassword(e.target.value);
                                     }}
                                     placeholder="Xác nhận mật khẩu mới"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -270,7 +270,7 @@ const Profile = () => {
                                         setAuthen(e.target.value);
                                     }}
                                     placeholder="Mã bảo mật 2FA"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 

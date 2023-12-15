@@ -9,7 +9,7 @@ import config from "../../config";
 import { formatToCurrency, toast } from "../../helpers";
 import { logout } from "../../helpers";
 import env from "../../helpers/env";
-// import ".//dashboard.css";
+import ".//investment.css";
 
 const Withdraw = () => {
     const navigate = useNavigate();
@@ -18,7 +18,6 @@ const Withdraw = () => {
     const [address, setAddress] = useState("");
     const currentUsername = config.AUTH.DRIVER.getItem("username");
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [username] = useState(config.AUTH.DRIVER.getItem("username"));
     const [refUrl, setRefUrl] = useState("");
     const [mobile, setMobile] = useState(false);
@@ -32,8 +31,6 @@ const Withdraw = () => {
         logout(navigate);
     };
 
-    console.log(loading);
-
     const handleCancel = transactionId => {
         let config = {
             method: "get",
@@ -43,14 +40,12 @@ const Withdraw = () => {
             }
         };
 
-        Axios.request(config).then(response => {
-            console.log(response);
+        Axios.request(config).then(() => {
             toast("success", "Huỷ lệnh rút thành công!");
         });
     };
 
     useEffect(() => {
-        setLoading(true);
         setTimeout(() => {
             let configCommissionHistory = {
                 method: "get",
@@ -66,8 +61,6 @@ const Withdraw = () => {
             };
 
             fetchData();
-
-            setLoading(false);
         }, 500);
     }, [currentUsername]);
 
@@ -150,7 +143,7 @@ const Withdraw = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>
@@ -268,7 +261,7 @@ const Withdraw = () => {
                                     onChange={e => {
                                         setAmount(e.target.value);
                                     }}
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                     placeholder="Số tiền thực hiện rút"
                                 />
                             </div>
@@ -290,7 +283,7 @@ const Withdraw = () => {
                                     onChange={e => {
                                         setAddress(e.target.value);
                                     }}
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                     placeholder="Địa chỉ ví cá nhân"
                                 />
                             </div>

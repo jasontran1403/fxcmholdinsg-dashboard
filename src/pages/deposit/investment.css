@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Sharp');
 
 :root{
@@ -49,7 +50,7 @@ html{
 body{
     width: 100vw;
     height: 100vh;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;
@@ -117,7 +118,7 @@ b{
 .container{
     display: grid;
     width: 96%;
-    margin: 0 auto;
+    margin: 1rem auto 0 auto;
     gap: 1.8rem;
     grid-template-columns: 16rem auto 3rem;
 }
@@ -225,6 +226,14 @@ main{
     margin-top: 1.4rem;
 }
 
+.mobile {
+    display: block;
+}
+
+.desktop {
+    display: none;
+}
+
 main .analyse{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -241,6 +250,28 @@ main .analyse > div{
     transition: all 0.3s ease;
 }
 
+main .buy-package > div{
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: right;
+}
+
+main .buy-package > .fa {
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
 main .analyse > div:hover{
     box-shadow: none;
 }
@@ -252,7 +283,6 @@ main .analyse > div .status{
 }
 
 main .analyse h3{
-    margin-left: 0.6rem;
     font-size: 1rem;
 }
 
@@ -294,6 +324,84 @@ main .analyse .searches svg circle{
 }
 
 main .analyse .progresss .percentage{
+    position: absolute;
+    top: -3px;
+    left: -1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+main .analyse-invest{
+    gap: 1.6rem;
+}
+
+main .analyse-invest > div{
+    background-color: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+main .analyse-invest > div:hover{
+    box-shadow: none;
+}
+
+main .analyse-invest > div .status{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .analyse-invest h3{
+    margin-left: 0.6rem;
+    font-size: 1rem;
+}
+
+main .analyse-invest .progresss{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+main .analyse-invest svg{
+    width: 4rem;
+    height: 4rem;
+}
+
+main .analyse-invest svg circle{
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: translate(5px, 5px);
+}
+
+main .analyse-invest .sales svg circle{
+    stroke: var(--color-success);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse-invest .visits svg circle{
+    stroke: var(--color-danger);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse-invest .searches svg circle{
+    stroke: var(--color-primary);
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+}
+
+main .analyse-invest .progresss .percentage{
     position: absolute;
     top: -3px;
     left: -1px;
@@ -377,6 +485,11 @@ main .recent-orders a{
     display: block;
     margin: 1rem auto;
     color: var(--color-primary);
+    font-size:1.2rem;
+}
+
+.recent-orders a:hover {
+    text-decoration: underline;
 }
 
 .right-section{
@@ -535,6 +648,32 @@ main .recent-orders a{
     align-items: center;
     gap: 0.6rem;
 }
+
+
+
+
+
+/* investment */
+
+
+
+
+p.investment-text  {
+    font-size: 1.2rem;
+    color: #000;
+}
+
+.mt-3 {
+    margin-top: 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+
+.select {
+    background-color: #fff;
+}
+
 
 @media screen and (max-width: 1200px) {
     .container{

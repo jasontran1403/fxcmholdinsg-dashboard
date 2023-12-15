@@ -69,7 +69,7 @@ const IBHistory = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>

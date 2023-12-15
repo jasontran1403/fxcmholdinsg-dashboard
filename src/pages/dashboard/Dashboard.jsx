@@ -22,14 +22,12 @@ const Dashboard = () => {
     const [investments, setInvestments] = useState([]);
     const [expenses, setExpenses] = useState({});
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [mobile, setMobile] = useState(false);
 
-    const handleClickNav = () => {
+    const handleClickNav = e => {
+        e.preventDefault();
         setMobile(!mobile);
     };
-
-    console.log(loading);
 
     const packageName = [
         {
@@ -137,7 +135,6 @@ const Dashboard = () => {
     }, [currentUsername]);
 
     useEffect(() => {
-        setLoading(true);
         setTimeout(() => {
             let configGetInfo = {
                 method: "get",
@@ -162,16 +159,12 @@ const Dashboard = () => {
             };
 
             fetchData();
-
-            setLoading(false);
         }, 500);
     }, [currentUsername]);
 
-    console.log(investments);
-
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>

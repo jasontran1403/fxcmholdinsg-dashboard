@@ -77,7 +77,17 @@ const Profile = () => {
             });
     }, []);
 
+    let regEmail =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     const handleSubmit = () => {
+        if (email === "") {
+            toast("error", "Vui lòng nhập địa chỉ email!");
+            return;
+        } else if (!regEmail.test(email)) {
+            toast("error", "Email không đúng định dạng!");
+            return;
+        }
         let data = JSON.stringify({
             username: username,
             email: email,
@@ -101,6 +111,10 @@ const Profile = () => {
             .then(response => {
                 if (response.data === "ok") {
                     toast("success", "Cập nhật thông tin thành công!");
+                } else if (response.data === "This email existed!") {
+                    toast("error", `Email ${email} đã tồn tại!`);
+                } else if (response.data === "This username is not existed!") {
+                    console.log(`${username} error`);
                 }
             })
             .catch(error => {
@@ -110,7 +124,7 @@ const Profile = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>

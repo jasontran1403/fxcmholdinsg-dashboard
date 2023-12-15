@@ -148,7 +148,7 @@ const FaCode = () => {
 
     return (
         <div className="container">
-            <aside>
+            <aside className={mobile ? "mobile" : ""}>
                 <div className="toggle-dashboard">
                     <div className="logo">
                         <h2>
@@ -281,6 +281,7 @@ const FaCode = () => {
                                                 setAuthenCode(e.target.value);
                                             }}
                                             placeholder="Nhập 6 ký tự mã 2FA"
+                                            style={{ width: "100%" }}
                                         />
                                     </p>
                                 </div>

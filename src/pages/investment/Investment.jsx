@@ -22,14 +22,11 @@ const Investment = () => {
     const [cashBalance, setCashBalance] = useState(0);
     const [info, setInfo] = useState({});
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [mobile, setMobile] = useState(false);
 
     const handleClickNav = () => {
         setMobile(!mobile);
     };
-
-    console.log(loading);
 
     const handleClick = e => {
         e.preventDefault();
@@ -48,7 +45,6 @@ const Investment = () => {
     }, [currentUsername]);
 
     useEffect(() => {
-        setLoading(true);
         setTimeout(() => {
             let configCommissionHistory = {
                 method: "get",
@@ -61,8 +57,6 @@ const Investment = () => {
             };
 
             fetchData();
-
-            setLoading(false);
         }, 500);
     }, [currentUsername]);
 
@@ -170,7 +164,7 @@ const Investment = () => {
     return (
         <body>
             <div className="container">
-                <aside>
+                <aside className={mobile ? "mobile" : ""}>
                     <div className="toggle-dashboard">
                         <div className="logo">
                             <h2>
