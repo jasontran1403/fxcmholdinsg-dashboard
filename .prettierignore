@@ -13,6 +13,7 @@ src/pages/profile/investment.css
 src/pages/treeview/treeview.css
 src/pages/withdraw/investment.css
 src/pages/registerFromRefLink/registerfromreflink.css
+public/index.html
 
 # Files
 README.md
