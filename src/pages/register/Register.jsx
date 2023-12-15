@@ -19,7 +19,7 @@ const Register = () => {
         () =>
             (configPlacement = {
                 method: "get",
-                url: `http://localhost:8080/api/user/reflink/${uuid}`
+                url: `${env}/api/user/reflink/${uuid}`
             }),
         [uuid]
     );
