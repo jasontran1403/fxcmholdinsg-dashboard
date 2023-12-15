@@ -12,6 +12,7 @@ import Kyc from "./pages/kyc/Kyc";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import RegisterFromRefLink from "./pages/registerFromRefLink/RegisterFromRefLink";
 import Treeview from "./pages/treeview/Treeview";
 import Withdraw from "./pages/withdraw/Withdraw";
 
@@ -47,7 +48,7 @@ const App = () => {
                     path="/register/:uuid"
                     element={
                         <Guest>
-                            <Register />
+                            <RegisterFromRefLink />
                         </Guest>
                     }
                 />

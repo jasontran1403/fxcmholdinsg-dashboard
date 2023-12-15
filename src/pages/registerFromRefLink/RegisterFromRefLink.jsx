@@ -1,18 +1,45 @@
 import Axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { PrimaryButton } from "../../components/buttons";
 import { Input } from "../../components/field";
 import { toast } from "../../helpers";
 import env from "../../helpers/env";
-import ".//register.css";
+import "./registerfromreflink.css";
 
-const Register = () => {
+const RegisterFromRefLink = () => {
     const navigate = useNavigate();
-    const [error] = useState(false);
+    const [error, setError] = useState(false);
     const [alreadyRegis] = useState(false);
-    const [refferal, setRefferal] = useState("");
+    const { uuid } = useParams();
+    const [ref, setRef] = useState("");
+
+    var configPlacement = useMemo(
+        () =>
+            (configPlacement = {
+                method: "get",
+                url: `${env}/api/user/reflink/${uuid}`
+            }),
+        [uuid]
+    );
+
+    useEffect(() => {
+        Axios(configPlacement)
+            .then(response => {
+                if (response.data === "Not existed") {
+                    toast("error", "Reflink này không tồn tại!");
+                    setError(true);
+                } else {
+                    setRef(response.data);
+                    setError(false);
+                }
+            })
+            .catch(() => {
+                toast("error", "Reflink này không tồn tại!");
+                setError(true);
+            });
+    }, [configPlacement, navigate]);
 
     const defaultMessage = {
         username: [],
@@ -34,7 +61,7 @@ const Register = () => {
         username: username.toLocaleLowerCase(),
         password: password,
         email: email.toLocaleLowerCase(),
-        rootUsername: refferal.toLocaleLowerCase(),
+        rootUsername: ref.toLocaleLowerCase(),
         address: "",
         phoneNumber: ""
     });
@@ -52,7 +79,7 @@ const Register = () => {
         setLoading(true);
         setTimeout(() => {
             const newErrorMessage = defaultMessage;
-            if (email === "" || password === "" || username === "" || refferal === "") {
+            if (email === "" || password === "" || username === "" || ref === "") {
                 toast("error", "Vui lòng nhập đủ thông tin!");
                 return;
             } else if (!regEmail.test(email)) {
@@ -64,7 +91,7 @@ const Register = () => {
                 toast("error", "This placement already registered");
             }
 
-            if (email && username && password && refferal && alreadyRegis == false) {
+            if (email && username && password && ref && alreadyRegis == false) {
                 Axios(configRegis)
                     .then(response => {
                         let message = response.data;
@@ -76,7 +103,7 @@ const Register = () => {
                             newErrorMessage.email = ["Địa chỉ email đã tồn tại"];
                         } else if (message.includes("sponsor")) {
                             toast("error", "Username người giới thiệu không tồn tại");
-                            newErrorMessage.refferal = ["Username người giới thiệu không tồn tại"];
+                            newErrorMessage.ref = ["Username người giới thiệu không tồn tại"];
                         } else {
                             toast("success", "Đăng ký tài khoản thành công!");
                             navigate("/login");
@@ -129,8 +156,8 @@ const Register = () => {
                                 id="refferal"
                                 type="text"
                                 placeholder="Enter refferal"
-                                value={refferal}
-                                onChange={e => setRefferal(e.target.value)}
+                                value={ref}
+                                disabled={true}
                             />
                         </div>
                         <p>
@@ -156,4 +183,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default RegisterFromRefLink;

@@ -10,8 +10,9 @@ src/pages/ibhistory/investment.css
 src/pages/investment/investment.css
 src/pages/kyc/investment.css
 src/pages/profile/investment.css
-src/pages/treeview/investment.css
+src/pages/treeview/treeview.css
 src/pages/withdraw/investment.css
+src/pages/registerFromRefLink/registerfromreflink.css
 
 # Files
 README.md
