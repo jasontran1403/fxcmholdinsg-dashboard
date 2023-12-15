@@ -15,7 +15,7 @@ const Profile = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [identity, setIdentity] = useState("");
-    const [address, setAddress] = useState("");
+    const [contact, setContact] = useState("");
     const [fullname, setFullname] = useState("");
     const [mobile, setMobile] = useState(false);
 
@@ -70,7 +70,7 @@ const Profile = () => {
                 setPhone(response.data.phone);
                 setIdentity(response.data.identity);
                 setEmail(response.data.email);
-                setAddress(response.data.address);
+                setContact(response.data.contact);
             })
             .catch(error => {
                 console.log(error);
@@ -93,7 +93,7 @@ const Profile = () => {
             email: email,
             phone: phone,
             identity: identity,
-            address: address,
+            contact: contact,
             fullname: fullname
         });
 
@@ -217,7 +217,7 @@ const Profile = () => {
                                     type="text"
                                     value={username}
                                     disabled={true}
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -240,7 +240,7 @@ const Profile = () => {
                                         setFullname(e.target.value);
                                     }}
                                     placeholder="Họ và tên"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -263,7 +263,7 @@ const Profile = () => {
                                         setEmail(e.target.value);
                                     }}
                                     placeholder="Địa chỉ email"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -286,7 +286,7 @@ const Profile = () => {
                                         setPhone(e.target.value);
                                     }}
                                     placeholder="Số điện thoại"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -309,7 +309,7 @@ const Profile = () => {
                                         setIdentity(e.target.value);
                                     }}
                                     placeholder="Số CCCD/CMND"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
@@ -326,13 +326,13 @@ const Profile = () => {
                                 </p>
                                 <input
                                     className="select w-3/4"
-                                    type="email"
-                                    value={address}
+                                    type="text"
+                                    value={contact}
                                     onChange={e => {
-                                        setAddress(e.target.value);
+                                        setContact(e.target.value);
                                     }}
                                     placeholder="Địa chỉ liên hệ"
-                                    style={{ width: "500px" }}
+                                    style={{ width: "100%" }}
                                 />
                             </div>
 
