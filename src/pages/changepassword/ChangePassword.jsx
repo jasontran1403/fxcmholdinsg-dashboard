@@ -201,7 +201,7 @@ const Profile = () => {
                                         setCurrentPassword(e.target.value);
                                     }}
                                     placeholder="Mật khẩu cũ"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -224,7 +224,7 @@ const Profile = () => {
                                         setNewPassword(e.target.value);
                                     }}
                                     placeholder="Mật khẩu mới"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -237,7 +237,7 @@ const Profile = () => {
                                 }}
                             >
                                 <p className="investment-text flex w-3/4 text-2xl font-light text-orange-500 transition-all duration-300">
-                                    Xác nhận mật khẩu mới
+                                    Xác nhận mật khẩu
                                 </p>
                                 <input
                                     className="select w-3/4"
@@ -247,7 +247,7 @@ const Profile = () => {
                                         setConfirmPassword(e.target.value);
                                     }}
                                     placeholder="Xác nhận mật khẩu mới"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -270,7 +270,7 @@ const Profile = () => {
                                         setAuthen(e.target.value);
                                     }}
                                     placeholder="Mã bảo mật 2FA"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import config from "../../config";
 import { logout, toast } from "../../helpers";
 import env from "../../helpers/env";
-// import ".//dashboard.css";
+import ".//investment.css";
 
 const Kyc = () => {
     const navigate = useNavigate();
@@ -225,13 +225,7 @@ const Kyc = () => {
                     </div>
                 </div>
                 <h1>KYC tài khoản</h1>
-                <div
-                    className="analyse"
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)"
-                    }}
-                >
+                <div className="kyc">
                     <div className="sales">
                         <div
                             className="status"
@@ -360,10 +354,7 @@ const Kyc = () => {
                             </div>
                         </div>
                     </div>
-                    <div
-                        className="flex justify-center col-span-1 mt-3"
-                        style={{ width: "100%", textAlign: "center" }}
-                    >
+                    <div style={{ width: "100%", textAlign: "center" }}>
                         <div className="px-2 py-1 font-semibold text-black-300 bg-emerald-400 rounded">
                             <button className="place-items-center" onClick={handleSubmit}>
                                 KYC

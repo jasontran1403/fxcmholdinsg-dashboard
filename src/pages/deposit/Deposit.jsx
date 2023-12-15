@@ -289,7 +289,7 @@ const Deposit = () => {
                                         onChange={e => {
                                             setAmount(e.target.value);
                                         }}
-                                        style={{ width: "100%" }}
+                                        style={{ width: "30%", textAlign: "left" }}
                                         placeholder="Số tiền nạp"
                                     />
                                 </div>

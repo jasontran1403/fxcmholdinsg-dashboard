@@ -261,8 +261,8 @@ const Withdraw = () => {
                                     onChange={e => {
                                         setAmount(e.target.value);
                                     }}
-                                    style={{ width: "100%" }}
-                                    placeholder="Số tiền thực hiện rút"
+                                    style={{ width: "30%", textAlign: "left" }}
+                                    placeholder="Số tiền rút"
                                 />
                             </div>
 
@@ -283,8 +283,8 @@ const Withdraw = () => {
                                     onChange={e => {
                                         setAddress(e.target.value);
                                     }}
-                                    style={{ width: "100%" }}
-                                    placeholder="Địa chỉ ví cá nhân"
+                                    style={{ width: "30%", textAlign: "left" }}
+                                    placeholder="Địa chỉ ví"
                                 />
                             </div>
 

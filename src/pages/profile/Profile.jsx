@@ -217,7 +217,7 @@ const Profile = () => {
                                     type="text"
                                     value={username}
                                     disabled={true}
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -240,7 +240,7 @@ const Profile = () => {
                                         setFullname(e.target.value);
                                     }}
                                     placeholder="Họ và tên"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -263,7 +263,7 @@ const Profile = () => {
                                         setEmail(e.target.value);
                                     }}
                                     placeholder="Địa chỉ email"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -286,7 +286,7 @@ const Profile = () => {
                                         setPhone(e.target.value);
                                     }}
                                     placeholder="Số điện thoại"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -309,7 +309,7 @@ const Profile = () => {
                                         setIdentity(e.target.value);
                                     }}
                                     placeholder="Số CCCD/CMND"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
@@ -332,7 +332,7 @@ const Profile = () => {
                                         setContact(e.target.value);
                                     }}
                                     placeholder="Địa chỉ liên hệ"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "40%", textAlign: "left" }}
                                 />
                             </div>
 
