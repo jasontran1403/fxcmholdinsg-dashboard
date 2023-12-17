@@ -37,7 +37,7 @@ export const toast = (type, message) => {
                 message === "Tạo lệnh rút thành công!" ||
                 message === "Cập nhật thông tin thành công!" ||
                 message === "Thay đổi mật khẩu thành công" ||
-                message === "Mua gói thành công" ||
+                message === "Mua gói thành công!" ||
                 message === "Upload ảnh KYC thành công!" ||
                 message === "Đăng xuất thành công!" ||
                 type === "success"
