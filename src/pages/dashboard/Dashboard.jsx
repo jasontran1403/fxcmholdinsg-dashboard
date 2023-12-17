@@ -356,7 +356,12 @@ const Dashboard = () => {
                                                                     });
                                                                 }}
                                                             >
-                                                                Gói {investment.packageId}
+                                                                Gói
+                                                                {
+                                                                    packageName[
+                                                                        expenses.investmentName - 1
+                                                                    ].name
+                                                                }
                                                             </a>
                                                         </Menu.Item>
                                                     );
@@ -371,7 +376,7 @@ const Dashboard = () => {
                                 <>
                                     <div className="flex flex-col items-center justify-between">
                                         <p className="text-4xl">
-                                            Gói {packageName[expenses.investmentName - 1].name}
+                                            Tên gói: {packageName[expenses.investmentName - 1].name}
                                         </p>
                                     </div>
 

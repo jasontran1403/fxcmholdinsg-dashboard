@@ -39,7 +39,8 @@ export const toast = (type, message) => {
                 message === "Thay đổi mật khẩu thành công" ||
                 message === "Mua gói thành công" ||
                 message === "Upload ảnh KYC thành công!" ||
-                message === "Đăng xuất thành công!"
+                message === "Đăng xuất thành công!" ||
+                type === "success"
             ) {
                 setTimeout(() => {
                     window.location.reload();
