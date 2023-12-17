@@ -31,10 +31,10 @@ const Dashboard = () => {
 
     const packageName = [
         {
-            name: "1.000$"
+            name: "VIP"
         },
         {
-            name: "2.000$"
+            name: "Extreme"
         },
         {
             name: "3.000$"
