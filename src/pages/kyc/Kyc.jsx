@@ -142,6 +142,8 @@ const Kyc = () => {
             .then(response => {
                 if (response.data === "ok") {
                     toast("success", "Upload ảnh KYC thành công!");
+                } else if (response.data === "da kyc") {
+                    toast("error", "Tài khoản đã KYC thành công!");
                 }
             })
             .catch(error => {
