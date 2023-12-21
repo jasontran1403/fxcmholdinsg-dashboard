@@ -6,13 +6,14 @@ import ChangePassword from "./pages/changepassword/ChangePassword";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Deposit from "./pages/deposit/Deposit";
 import FaCode from "./pages/facode/FaCode";
+import ForgotPassword from "./pages/forgotpassword/ForgotPassword";
 import IBHistory from "./pages/ibhistory/IBHistory";
 import Investment from "./pages/investment/Investment";
 import Kyc from "./pages/kyc/Kyc";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
-import RegisterFromRefLink from "./pages/registerFromRefLink/RegisterFromRefLink";
+import ResetPassword from "./pages/resetpassword/Resetpassword";
 import Treeview from "./pages/treeview/Treeview";
 import Withdraw from "./pages/withdraw/Withdraw";
 
@@ -48,10 +49,28 @@ const App = () => {
                     path="/register/:uuid"
                     element={
                         <Guest>
-                            <RegisterFromRefLink />
+                            <Register />
                         </Guest>
                     }
                 />
+                <Route
+                    path="/forgot-password"
+                    element={
+                        <Guest>
+                            <ForgotPassword />
+                        </Guest>
+                    }
+                />
+
+                <Route
+                    path="/reset-password"
+                    element={
+                        <Guest>
+                            <ResetPassword />
+                        </Guest>
+                    }
+                />
+
                 <Route
                     path="/investment"
                     element={
@@ -60,6 +79,7 @@ const App = () => {
                         </Auth>
                     }
                 />
+
                 <Route
                     path="/history"
                     element={
@@ -132,7 +152,14 @@ const App = () => {
                         </Auth>
                     }
                 />
-                <Route path="/*" element={<Dashboard />} />
+                <Route
+                    path="/*"
+                    element={
+                        <Guest>
+                            <Dashboard />
+                        </Guest>
+                    }
+                />
             </Routes>
         </Router>
     );

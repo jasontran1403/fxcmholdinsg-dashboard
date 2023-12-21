@@ -140,7 +140,7 @@ const Login = () => {
                                 error={errorMessage.faCode}
                             />
                         </div>
-                        <a href="/forgot-word">Quên mật khẩu?</a>
+                        <a href="/forgot-password">Quên mật khẩu?</a>
                         <span>
                             Chưa có tài khoản?
                             <a href="/register">Đăng ký tại đây</a>
