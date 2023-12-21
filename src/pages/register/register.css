@@ -36,14 +36,23 @@ body {
 }
 
 .container-register span{
-    font-size: 12px;
+    font-size: 15px;
+    margin-left: 15px;
 }
 
 .container-register a{
     color: #333;
-    font-size: 13px;
+    font-size: 15px;
     text-decoration: none;
-    margin: 15px 0 10px;
+    margin: 15px 0 10px 15px;
+}
+
+.container-register a:hover{
+    color: #512da8;
+    font-size: 15px;
+    text-decoration: none;
+    margin: 15px 0 10px 15px;
+
 }
 
 .container-register button{
